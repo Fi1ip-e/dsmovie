@@ -1,10 +1,10 @@
-import Pagination from "../../components/Pagination";
 import MovieCard from "../../components/MovieCard";
 import './style.css';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../utils/requests";
 import { MoviePage } from "../../types/movie";
+import Pagination from "../../components/Pagination";
 
 function Listing() {
 
@@ -22,7 +22,7 @@ function Listing() {
     });
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/movies?size=12&page=${pageNumber}$sort=id`).then(res => {
+        axios.get(`${BASE_URL}/movies?size=12&page=${pageNumber}&sort=id`).then(res => {
 
             const data = res.data as MoviePage;
             setPage(data);
@@ -30,10 +30,13 @@ function Listing() {
         })
     }, [pageNumber]);
 
+    const handlePageChange = (newPageNumber : number) => {
+        setPageNumber(newPageNumber);
+    }
+
     return (
         <>
-
-            <Pagination />
+            <Pagination page={page} onChange={handlePageChange}/>
 
             <div className="container">
 
@@ -48,7 +51,7 @@ function Listing() {
             </div>
 
         </>
-    )
-}
+    );
+};
 
 export default Listing;

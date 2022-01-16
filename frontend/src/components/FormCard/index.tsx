@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Movie } from '../../types/movie';
 import { BASE_URL } from '../../utils/requests';
 import './style.css';
@@ -48,7 +48,7 @@ function FormCard({ movieId }: Props) {
 
             </div >
         </div >
-    )
-}
+    );
+};
 
 export default FormCard;
